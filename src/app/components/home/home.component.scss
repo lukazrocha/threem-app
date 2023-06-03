@@ -1,0 +1,24 @@
+.back-gray {
+  background-color: var(--back-gray);
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-main-page {
+  img {
+    width: 20rem;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+  }
+}
+
+.text-main-page {
+  p {
+    width: 20rem;
+    color: var(--light-gray);
+  }
+}

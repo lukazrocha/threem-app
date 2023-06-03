@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NavComponent } from './components/nav/nav.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { HomeComponent } from './components/home/home.component';
 
-const routes: Routes = [{ path: '', component: CreateAccountComponent }];
+const routes: Routes = [
+  { path: 'createAccount', component: CreateAccountComponent },
+  { path: 'home', component: HomeComponent },
+];
 
 @NgModule({
   declarations: [],

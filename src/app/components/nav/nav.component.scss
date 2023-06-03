@@ -13,15 +13,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #fff;
+    width: 100%;
+    color: var(--white);
     padding: 0 20px;
 
     .branding {
       a {
         text-decoration: none;
-        color: #fff;
+        color: var(--white);
         font-weight: 600;
         font-size: larger;
+      }
+    }
+
+    .pages {
+      a {
+        text-decoration: none;
+        color: var(--white);
+        font-size: medium;
       }
     }
   }
@@ -46,7 +55,7 @@
     p {
       font-size: 16px;
       line-height: 1.5;
-      color: #777;
+      color: var(--light-gray);
     }
   }
 }

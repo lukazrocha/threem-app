@@ -1,3 +1,5 @@
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -8,9 +10,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './components/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, CreateAccountComponent, NavComponent],
+  declarations: [
+    AppComponent,
+    CreateAccountComponent,
+    NavComponent,
+    HomeComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -23,6 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
       progressBar: true,
       preventDuplicates: true,
     }),
+    MatButtonModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
