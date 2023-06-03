@@ -5,10 +5,18 @@
 }
 
 // Estilos globais
+@import "ngx-toastr/toastr";
+
 body {
   background-color: #1d1f2f;
   color: #ffffff;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

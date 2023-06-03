@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Account } from 'src/app/Account';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-create-account',
@@ -11,7 +12,9 @@ export class CreateAccountComponent {
     name: '',
   };
 
+  constructor(private notification: NotificationService) {}
+
   submit() {
-    console.log(this.account);
+    this.notification.success(this.account.name);
   }
 }
