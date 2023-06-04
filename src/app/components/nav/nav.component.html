@@ -2,10 +2,56 @@
   <div class="header-main">
     <div class="header">
       <div class="branding">
-        <a routerLink="home"> THREEM </a>
+        <a routerLink="home">
+          <mat-icon aria-hidden="true">home</mat-icon>
+        </a>
       </div>
       <div class="pages">
-        <a routerLink="createAccount">Accounts</a>
+        <button mat-button [matMenuTriggerFor]="entries">Lançamentos</button>
+        <mat-menu #entries="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="incomes">
+            <mat-icon>trending_up</mat-icon>Receitas
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="expenses">
+            <mat-icon>trending_down</mat-icon>Despesas
+          </button>
+        </mat-menu>
+
+        <mat-menu #incomes="matMenu">
+          <button mat-menu-item routerLink="createIncome">
+            <mat-icon>price_check</mat-icon>Nova Receita
+          </button>
+          <button mat-menu-item routerLink="listIncomes">
+            <mat-icon>receipt_long</mat-icon>Listar Receitas
+          </button>
+        </mat-menu>
+
+        <mat-menu #expenses="matMenu">
+          <button mat-menu-item routerLink="createExpense">
+            <mat-icon>payments</mat-icon>Nova Despesa
+          </button>
+          <button mat-menu-item routerLink="listExpenses">
+            <mat-icon>receipt</mat-icon>Listar Receitas
+          </button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="accounts">Contas</button>
+        <mat-menu #accounts="matMenu">
+          <button mat-menu-item routerLink="createAccount">
+            <mat-icon>add_card</mat-icon>Criar Conta
+          </button>
+          <button mat-menu-item>
+            <mat-icon>account_balance_wallet</mat-icon>Listar Contas
+          </button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="categories">Categorias</button>
+        <mat-menu #categories="matMenu">
+          <button mat-menu-item routerLink="createCategory">
+            <mat-icon>add</mat-icon>Criar Categoria
+          </button>
+          <button mat-menu-item><mat-icon>list</mat-icon>Categorias</button>
+        </mat-menu>
       </div>
     </div>
   </div>

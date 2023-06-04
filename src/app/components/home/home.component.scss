@@ -1,5 +1,5 @@
 .back-gray {
-  background-color: var(--back-gray);
+  background-color: var(--base-gray);
 }
 
 .flex {
@@ -11,7 +11,7 @@
 .img-main-page {
   img {
     width: 20rem;
-    background-color: var(--light-gray);
+    background-color: var(--back-gray);
     border-radius: 4px;
   }
 }
