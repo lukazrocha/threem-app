@@ -13,6 +13,16 @@ import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './components/home/home.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateIncomeComponent } from './components/create-income/create-income.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
@@ -20,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
     CreateAccountComponent,
     NavComponent,
     HomeComponent,
+    CreateIncomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +48,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatMenuModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    NgxMaskModule.forRoot(maskConfig),
   ],
   providers: [],
   bootstrap: [AppComponent],
