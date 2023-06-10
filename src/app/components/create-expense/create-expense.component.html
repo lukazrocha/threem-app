@@ -1,0 +1,56 @@
+<form class="income-form">
+  <h1>Cadastrar Despesa</h1>
+
+  <label for="date">Data: </label>
+  <input
+    type="date"
+    id="date"
+    name="date"
+    [(ngModel)]="expense.date"
+    placeholder="dd/MM/yyyy"
+    style="width: 8rem"
+  />
+
+  <label for="amount">Valor: </label>
+  <input
+    type="text"
+    id="amount"
+    name="amount"
+    [(ngModel)]="expense.amount"
+    (blur)="formatAmount()"
+    placeholder="R$"
+  />
+
+  <label>Conta: </label>
+  <select id="account" name="account" [(ngModel)]="expense.account">
+    <option *ngFor="let account of accounts" [value]="account.id">
+      {{ account.name }}
+    </option>
+  </select>
+
+  <label>Categoria: </label>
+  <select id="account" name="account" [(ngModel)]="expense.category">
+    <option *ngFor="let category of categories" [value]="category.id">
+      {{ category.name }}
+    </option>
+  </select>
+
+  <label for="name">Anotações: </label>
+  <input type="text" id="note" name="note" [(ngModel)]="expense.note" />
+
+  <!-- Botões -->
+  <div class="width-100 flex-2">
+    <button
+      class="width-50"
+      mat-raised-button
+      color="primary"
+      (click)="submit()"
+    >
+      <mat-icon>done</mat-icon> Salvar
+    </button>
+
+    <button class="width-50" mat-raised-button color="warn" (click)="cancel()">
+      <mat-icon>close</mat-icon> Cancelar
+    </button>
+  </div>
+</form>

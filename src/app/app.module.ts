@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { CreateExpenseComponent } from './components/create-expense/create-expense.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -31,6 +32,7 @@ const maskConfig: Partial<IConfig> = {
     NavComponent,
     HomeComponent,
     CreateIncomeComponent,
+    CreateExpenseComponent,
   ],
   imports: [
     BrowserModule,

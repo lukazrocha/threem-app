@@ -1,26 +1,25 @@
-import { Account } from 'src/app/models/Account';
-import { Income } from './../../models/Income';
 import { Component } from '@angular/core';
-import { Category } from 'src/app/models/Category';
-import { NotificationService } from 'src/app/services/notification.service';
 import { Router } from '@angular/router';
-
-import currency from 'currency.js';
+import { Expense } from 'src/app/models/Expense';
 import { AccountService } from 'src/app/services/account.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import currency from 'currency.js';
+import { Account } from 'src/app/models/Account';
+import { Category } from 'src/app/models/Category';
 
 @Component({
-  selector: 'app-create-income',
-  templateUrl: './create-income.component.html',
-  styleUrls: ['./create-income.component.scss'],
+  selector: 'app-create-expense',
+  templateUrl: './create-expense.component.html',
+  styleUrls: ['./create-expense.component.scss'],
 })
-export class CreateIncomeComponent {
-  income: Income = {
+export class CreateExpenseComponent {
+  expense: Expense = {
     id: '',
     amount: '',
     date: '',
     account: '',
-    category: { name: '' },
+    category: undefined,
   };
   accounts: Account[];
   categories: Category[];
@@ -35,14 +34,14 @@ export class CreateIncomeComponent {
   ngOnInit() {
     this.setCurrentDate();
     this.accounts = this.accountService.getAccounts();
-    this.categories = this.categoryService.getIncomeCategories();
+    this.categories = this.categoryService.getExpenseCategories();
   }
 
   submit() {
     // Capturar dados da tela, montar objeto e fazer POST na API
-    this.toastr.success('Receita salva com sucesso!', 'Receitas');
+    this.toastr.success('Despesa salva com sucesso!', 'Despesas');
     this.router.navigate(['home']);
-    console.log(this.income);
+    console.log(this.expense);
   }
   cancel() {
     this.router.navigate(['home']);
@@ -53,17 +52,17 @@ export class CreateIncomeComponent {
     const year = currentDate.getFullYear();
     const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
     const day = ('0' + currentDate.getDate()).slice(-2);
-    this.income.date = `${year}-${month}-${day}`;
+    this.expense.date = `${year}-${month}-${day}`;
   }
 
   formatAmount() {
-    if (this.income.amount !== '') {
-      const valorNumerico = currency(this.income.amount, {
+    if (this.expense.amount !== '') {
+      const valorNumerico = currency(this.expense.amount, {
         precision: 2,
         separator: '.',
         decimal: ',',
       });
-      this.income.amount = valorNumerico.format({
+      this.expense.amount = valorNumerico.format({
         symbol: 'R$',
         decimal: ',',
       });
@@ -71,7 +70,7 @@ export class CreateIncomeComponent {
   }
 
   onSelectChange(selected: any) {
-    this.income.account = selected.account;
-    console.log(this.income);
+    this.expense.account = selected.account;
+    console.log(this.expense);
   }
 }
