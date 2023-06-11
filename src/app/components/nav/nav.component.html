@@ -18,39 +18,41 @@
         </mat-menu>
 
         <mat-menu #incomes="matMenu">
-          <button mat-menu-item routerLink="createIncome">
+          <button mat-menu-item routerLink="incomes/create">
             <mat-icon>price_check</mat-icon>Nova Receita
           </button>
-          <button mat-menu-item routerLink="listIncomes">
+          <button mat-menu-item routerLink="incomes">
             <mat-icon>receipt_long</mat-icon>Listar Receitas
           </button>
         </mat-menu>
 
         <mat-menu #expenses="matMenu">
-          <button mat-menu-item routerLink="createExpense">
+          <button mat-menu-item routerLink="expenses/create">
             <mat-icon>payments</mat-icon>Nova Despesa
           </button>
-          <button mat-menu-item routerLink="listExpenses">
+          <button mat-menu-item routerLink="expenses">
             <mat-icon>receipt</mat-icon>Listar Receitas
           </button>
         </mat-menu>
 
         <button mat-button [matMenuTriggerFor]="accounts">Contas</button>
         <mat-menu #accounts="matMenu">
-          <button mat-menu-item routerLink="createAccount">
+          <button mat-menu-item routerLink="accounts/create">
             <mat-icon>add_card</mat-icon>Criar Conta
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item routerLink="accounts">
             <mat-icon>account_balance_wallet</mat-icon>Listar Contas
           </button>
         </mat-menu>
 
         <button mat-button [matMenuTriggerFor]="categories">Categorias</button>
         <mat-menu #categories="matMenu">
-          <button mat-menu-item routerLink="createCategory">
+          <button mat-menu-item routerLink="categories/create">
             <mat-icon>add</mat-icon>Criar Categoria
           </button>
-          <button mat-menu-item><mat-icon>list</mat-icon>Categorias</button>
+          <button mat-menu-item routerLink="categories">
+            <mat-icon>list</mat-icon>Listar Categorias
+          </button>
         </mat-menu>
       </div>
     </div>

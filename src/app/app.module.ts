@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { CreateAccountComponent } from './components/accounts/create-account/create-account.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './components/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { CreateExpenseComponent } from './components/create-expense/create-expense.component';
+import { ListAccountComponent } from './components/accounts/list-account/list-account.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { UpdateAccountComponent } from './components/accounts/update-account/update-account.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -33,6 +38,8 @@ const maskConfig: Partial<IConfig> = {
     HomeComponent,
     CreateIncomeComponent,
     CreateExpenseComponent,
+    ListAccountComponent,
+    UpdateAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +62,9 @@ const maskConfig: Partial<IConfig> = {
     MatNativeDateModule,
     MatInputModule,
     NgxMaskModule.forRoot(maskConfig),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

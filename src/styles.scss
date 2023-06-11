@@ -3,6 +3,7 @@
   --back-gray: #2b2d42;
   --white: #ffffff;
   --light-gray: #ccc5c5;
+  --red: #e82525;
 }
 
 * {
@@ -41,7 +42,8 @@ form {
 }
 
 input,
-select {
+select,
+option {
   padding: 8px;
   border-radius: 4px;
   border: none;
