@@ -2,12 +2,8 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Account } from 'src/app/models/Account';
 import { AccountService } from 'src/app/services/account.service';
-
-export interface AccountData {
-  id?: string;
-  name: string;
-}
 
 @Component({
   selector: 'app-list-account',
@@ -16,14 +12,27 @@ export interface AccountData {
 })
 export class ListAccountComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'acoes'];
-  dataSource: MatTableDataSource<AccountData>;
+  dataSource: MatTableDataSource<Account>;
+  accounts: Account[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private accountService: AccountService) {
-    const accounts: AccountData[] = this.accountService.getAccounts();
-    this.dataSource = new MatTableDataSource(accounts);
+    this.getAccounts();
+    this.dataSource = new MatTableDataSource(this.accounts);
+  }
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.dataSource = new MatTableDataSource(this.accounts);
+    }, 1000);
+  }
+
+  getAccounts() {
+    return this.accountService.getAccounts().subscribe((response) => {
+      this.accounts = response;
+    });
   }
 
   ngAfterViewInit() {

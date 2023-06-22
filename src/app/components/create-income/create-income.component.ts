@@ -34,8 +34,14 @@ export class CreateIncomeComponent {
 
   ngOnInit() {
     this.setCurrentDate();
-    this.accounts = this.accountService.getAccounts();
+    this.getAccounts();
     this.categories = this.categoryService.getIncomeCategories();
+  }
+
+  getAccounts() {
+    return this.accountService.getAccounts().subscribe((response) => {
+      this.accounts = response;
+    });
   }
 
   submit() {

@@ -10,8 +10,8 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./update-account.component.scss'],
 })
 export class UpdateAccountComponent {
+  id: string;
   account: Account = {
-    id: '',
     name: '',
   };
 
@@ -23,24 +23,33 @@ export class UpdateAccountComponent {
   ) {}
 
   ngOnInit() {
-    this.account.id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
     this.findById();
   }
 
   findById() {
-    this.account = this.accountService.getAccountById(this.account.id); //subscribe
+    return this.accountService.getAccountById(this.id).subscribe((response) => {
+      this.account = response;
+    });
   }
 
-  update(account: Account) {
-    this.accountService.updateAccount(account);
+  update() {
+    return this.accountService.updateAccount(this.id, this.account).subscribe();
   }
 
   submit() {
-    this.update(this.account);
-    this.notification.success(
-      'Contas',
-      `Conta ${this.account.name} atualizada com sucesso`
-    );
-    this.router.navigate(['home']);
+    try {
+      this.update();
+      this.notification.success(
+        'Contas',
+        `Conta ${this.account.name} atualizada com sucesso`
+      );
+      this.router.navigate(['home']);
+    } catch (error) {
+      this.notification.error(
+        'Contas',
+        `Erro ao atualizar a conta ${this.account.name}`
+      );
+    }
   }
 }

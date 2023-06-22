@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/models/Account';
+import { AccountService } from 'src/app/services/account.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
@@ -15,10 +16,16 @@ export class CreateAccountComponent {
 
   constructor(
     private router: Router,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private accountService: AccountService
   ) {}
 
+  saveAccount() {
+    return this.accountService.saveAccount(this.account).subscribe();
+  }
+
   submit() {
+    this.saveAccount();
     this.notification.success(
       'Contas',
       `Conta ${this.account.name} cadastrada com sucesso`

@@ -33,8 +33,14 @@ export class CreateExpenseComponent {
 
   ngOnInit() {
     this.setCurrentDate();
-    this.accounts = this.accountService.getAccounts();
+    this.getAccounts();
     this.categories = this.categoryService.getExpenseCategories();
+  }
+
+  getAccounts() {
+    return this.accountService.getAccounts().subscribe((response) => {
+      this.accounts = response;
+    });
   }
 
   submit() {
