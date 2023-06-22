@@ -41,14 +41,14 @@ export class UpdateAccountComponent {
     try {
       this.update();
       this.notification.success(
-        'Contas',
-        `Conta ${this.account.name} atualizada com sucesso`
+        `Conta ${this.account.name} atualizada com sucesso`,
+        'Contas'
       );
       this.router.navigate(['home']);
     } catch (error) {
       this.notification.error(
-        'Contas',
-        `Erro ao atualizar a conta ${this.account.name}`
+        `Erro ao atualizar a conta ${this.account.name}`,
+        'Contas'
       );
     }
   }

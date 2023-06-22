@@ -27,8 +27,8 @@ export class CreateAccountComponent {
   submit() {
     this.saveAccount();
     this.notification.success(
-      'Contas',
-      `Conta ${this.account.name} cadastrada com sucesso`
+      `Conta ${this.account.name} cadastrada com sucesso`,
+      'Contas'
     );
     this.router.navigate(['home']);
   }
