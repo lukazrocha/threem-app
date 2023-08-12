@@ -1,5 +1,5 @@
 import { Account } from 'src/app/models/Account';
-import { Income } from './../../models/Income';
+import { Income } from '../../../models/Income';
 import { Component } from '@angular/core';
 import { Category } from 'src/app/models/Category';
 import { NotificationService } from 'src/app/services/notification.service';
