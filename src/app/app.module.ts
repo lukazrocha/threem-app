@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './components/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { HomeComponent } from './components/home/home.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateIncomeComponent } from './components/incomes/create-income/create-income.component';
@@ -32,6 +31,7 @@ import { ListCategoryComponent } from './components/categories/list-category/lis
 import { UpdateCategoryComponent } from './components/categories/update-category/update-category.component';
 import { UpdateIncomeComponent } from './components/incomes/update-income/update-income.component';
 import { UpdateExpenseComponent } from './components/expenses/update-expense/update-expense.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -42,7 +42,6 @@ const maskConfig: Partial<IConfig> = {
     AppComponent,
     CreateAccountComponent,
     NavComponent,
-    HomeComponent,
     CreateIncomeComponent,
     CreateExpenseComponent,
     ListAccountComponent,
@@ -54,6 +53,7 @@ const maskConfig: Partial<IConfig> = {
     UpdateCategoryComponent,
     UpdateIncomeComponent,
     UpdateExpenseComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

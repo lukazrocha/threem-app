@@ -1,0 +1,19 @@
+<div class="dashboard">
+  <h2>Dashboard Financeiro</h2>
+  <div class="totals">
+    <div class="total-item income">
+      <h3>Receitas</h3>
+      <p>{{ receitas | currency : "BRL" : "symbol" : "1.2-2" }}</p>
+    </div>
+    <div class="total-item expense">
+      <h3>Despesas</h3>
+      <p>{{ despesas | currency : "BRL" : "symbol" : "1.2-2" }}</p>
+    </div>
+    <div class="total-item total">
+      <h3>Saldo Total</h3>
+      <p [ngClass]="saldoTotal >= 0 ? 'positive' : 'negative'">
+        {{ saldoTotal | currency : "BRL" : "symbol" : "1.2-2" }}
+      </p>
+    </div>
+  </div>
+</div>
