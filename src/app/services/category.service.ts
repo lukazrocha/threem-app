@@ -1,46 +1,20 @@
+import { environment } from 'src/environments/enviroment';
 import { Injectable } from '@angular/core';
 import { Category } from '../models/Category';
 import { v4 as uuid } from 'uuid';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
-  incomeCategories: Category[];
-  expenseCategories: Category[];
-
-  constructor() {
-    this.incomeCategories = [
-      {
-        id: uuid(),
-        name: 'Salário',
-      },
-      {
-        id: uuid(),
-        name: 'Bônus',
-      },
-    ];
-    this.expenseCategories = [
-      {
-        id: uuid(),
-        name: 'Alimentação',
-      },
-      {
-        id: uuid(),
-        name: 'Educação',
-      },
-      {
-        id: uuid(),
-        name: 'Transporte',
-      },
-    ];
-  }
+  constructor(private http: HttpClient) {}
 
   getIncomeCategories() {
-    return this.incomeCategories;
+    return this.http.get<Category[]>(`${environment.API}/categories/incomes`);
   }
 
   getExpenseCategories() {
-    return this.expenseCategories;
+    return this.http.get<Category[]>(`${environment.API}/categories/expenses`);
   }
 }

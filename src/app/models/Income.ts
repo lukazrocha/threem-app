@@ -5,7 +5,7 @@ export interface Income {
   id?: string;
   amount: string;
   date: string;
-  account: string;
+  account: Account;
   category: Category;
   note?: string;
 }

@@ -34,7 +34,7 @@ export class CreateExpenseComponent {
   ngOnInit() {
     this.setCurrentDate();
     this.getAccounts();
-    this.categories = this.categoryService.getExpenseCategories();
+    this.getCategories();
   }
 
   getAccounts() {
@@ -43,12 +43,18 @@ export class CreateExpenseComponent {
     });
   }
 
+  getCategories() {
+    this.categoryService.getExpenseCategories().subscribe((response) => {
+      this.categories = response;
+    });
+  }
+
   submit() {
     // Capturar dados da tela, montar objeto e fazer POST na API
     this.toastr.success('Despesa salva com sucesso!', 'Despesas');
     this.router.navigate(['home']);
-    console.log(this.expense);
   }
+
   cancel() {
     this.router.navigate(['home']);
   }

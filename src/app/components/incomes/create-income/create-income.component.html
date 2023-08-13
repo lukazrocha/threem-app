@@ -29,7 +29,7 @@
   </select>
 
   <label>Categoria: </label>
-  <select id="account" name="account" [(ngModel)]="income.category">
+  <select id="category" name="category" [(ngModel)]="income.category">
     <option *ngFor="let category of categories" [value]="category.id">
       {{ category.name }}
     </option>

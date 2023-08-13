@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import currency from 'currency.js';
 import { AccountService } from 'src/app/services/account.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { IncomeService } from 'src/app/services/income.service';
 
 @Component({
   selector: 'app-create-income',
@@ -19,7 +20,7 @@ export class CreateIncomeComponent {
     id: '',
     amount: '',
     date: '',
-    account: '',
+    account: { name: '' },
     category: { name: '' },
   };
   accounts: Account[];
@@ -29,13 +30,14 @@ export class CreateIncomeComponent {
     private router: Router,
     private toastr: NotificationService,
     private accountService: AccountService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private incomeService: IncomeService
   ) {}
 
   ngOnInit() {
     this.setCurrentDate();
     this.getAccounts();
-    this.categories = this.categoryService.getIncomeCategories();
+    this.getCategories();
   }
 
   getAccounts() {
@@ -44,12 +46,34 @@ export class CreateIncomeComponent {
     });
   }
 
-  submit() {
-    // Capturar dados da tela, montar objeto e fazer POST na API
-    this.toastr.success('Receita salva com sucesso!', 'Receitas');
-    this.router.navigate(['home']);
-    console.log(this.income);
+  getCategories() {
+    return this.categoryService.getIncomeCategories().subscribe((response) => {
+      this.categories = response;
+    });
   }
+
+  saveIncome() {
+    try {
+      const incomeToSave: Income = {
+        amount: this.unformatAmount(this.income.amount),
+        date: this.convertDate(this.income.date),
+        account: this.income.account,
+        category: this.income.category,
+        note: this.income.note,
+      };
+
+      this.incomeService.saveIncome(incomeToSave).subscribe();
+      this.toastr.success('Receita salva com sucesso!', 'Receitas');
+      this.router.navigate(['home']);
+    } catch (error) {
+      this.toastr.error(error.message, 'Receitas');
+    }
+  }
+
+  submit() {
+    this.saveIncome();
+  }
+
   cancel() {
     this.router.navigate(['home']);
   }
@@ -76,8 +100,14 @@ export class CreateIncomeComponent {
     }
   }
 
-  onSelectChange(selected: any) {
-    this.income.account = selected.account;
-    console.log(this.income);
+  unformatAmount(amount: string): string {
+    if (amount !== '') {
+      return amount.replace('R$', '').replace('.', '').replace(',', '.');
+    }
+    return '';
+  }
+
+  convertDate(date: string): string {
+    return date + 'T00:00:00';
   }
 }
