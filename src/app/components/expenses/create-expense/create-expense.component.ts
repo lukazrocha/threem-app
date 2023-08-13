@@ -7,6 +7,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 import currency from 'currency.js';
 import { Account } from 'src/app/models/Account';
 import { Category } from 'src/app/models/Category';
+import { DateutilService } from 'src/app/services/dateutil.service';
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'app-create-expense',
@@ -18,8 +20,8 @@ export class CreateExpenseComponent {
     id: '',
     amount: '',
     date: '',
-    account: '',
-    category: undefined,
+    account: { name: '' },
+    category: { name: '' },
   };
   accounts: Account[];
   categories: Category[];
@@ -28,11 +30,13 @@ export class CreateExpenseComponent {
     private router: Router,
     private toastr: NotificationService,
     private accountService: AccountService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private expenseService: ExpenseService,
+    private dateUtilService: DateutilService
   ) {}
 
   ngOnInit() {
-    this.setCurrentDate();
+    this.expense.date = this.dateUtilService.getCurrentDate();
     this.getAccounts();
     this.getCategories();
   }
@@ -59,14 +63,6 @@ export class CreateExpenseComponent {
     this.router.navigate(['home']);
   }
 
-  setCurrentDate() {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
-    const day = ('0' + currentDate.getDate()).slice(-2);
-    this.expense.date = `${year}-${month}-${day}`;
-  }
-
   formatAmount() {
     if (this.expense.amount !== '') {
       const valorNumerico = currency(this.expense.amount, {
@@ -79,10 +75,5 @@ export class CreateExpenseComponent {
         decimal: ',',
       });
     }
-  }
-
-  onSelectChange(selected: any) {
-    this.expense.account = selected.account;
-    console.log(this.expense);
   }
 }

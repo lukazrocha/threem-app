@@ -1,3 +1,4 @@
+import { DateutilService } from './../../../services/dateutil.service';
 import { Account } from 'src/app/models/Account';
 import { Income } from '../../../models/Income';
 import { Component } from '@angular/core';
@@ -31,11 +32,12 @@ export class CreateIncomeComponent {
     private toastr: NotificationService,
     private accountService: AccountService,
     private categoryService: CategoryService,
-    private incomeService: IncomeService
+    private incomeService: IncomeService,
+    private dateUtilService: DateutilService
   ) {}
 
   ngOnInit() {
-    this.setCurrentDate();
+    this.income.date = this.dateUtilService.getCurrentDate();
     this.getAccounts();
     this.getCategories();
   }
@@ -56,7 +58,7 @@ export class CreateIncomeComponent {
     try {
       const incomeToSave: Income = {
         amount: this.unformatAmount(this.income.amount),
-        date: this.convertDate(this.income.date),
+        date: this.dateUtilService.convertDate(this.income.date),
         account: this.income.account,
         category: this.income.category,
         note: this.income.note,
@@ -78,14 +80,6 @@ export class CreateIncomeComponent {
     this.router.navigate(['home']);
   }
 
-  setCurrentDate() {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
-    const day = ('0' + currentDate.getDate()).slice(-2);
-    this.income.date = `${year}-${month}-${day}`;
-  }
-
   formatAmount() {
     if (this.income.amount !== '') {
       const valorNumerico = currency(this.income.amount, {
@@ -105,9 +99,5 @@ export class CreateIncomeComponent {
       return amount.replace('R$', '').replace('.', '').replace(',', '.');
     }
     return '';
-  }
-
-  convertDate(date: string): string {
-    return date + 'T00:00:00';
   }
 }

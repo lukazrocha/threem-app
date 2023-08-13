@@ -22,6 +22,10 @@ export class IncomeService {
     return this.http.get<Income>(`${environment.API}/entries/incomes/${id}`);
   }
 
+  getIncomeMonthTotal(date: string): Observable<any> {
+    return this.http.get(`${environment.API}/entries/incomes/total/${date}`);
+  }
+
   saveIncome(income: Income) {
     return this.http.post(`${environment.API}/entries/incomes`, {
       amount: income.amount,
